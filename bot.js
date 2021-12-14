@@ -6,4 +6,13 @@ bot.on('ready', () => {
     console.log(`${bot.user.username} is now online!`);
 });
 
+bot.on('messageCreate', message => {
+    if(message.author.bot) return;
+
+    if(message.content.toLowerCase() == `${prefix}test`) {
+        message.channel.send(":white_check_mark: It works!");
+        return;
+    }
+});
+
 bot.login(token);

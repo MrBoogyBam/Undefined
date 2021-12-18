@@ -34,9 +34,15 @@ bot.on('ready', () => {
 bot.on('messageCreate', message => {
     if(message.author.bot) return;
 
-    if(message.content.toLowerCase() == `${prefix}test`) {
-        message.channel.send(":white_check_mark: It works!");
-        return;
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+
+    let commands = bot.commands.get(cmd.slice(prefix.length));
+
+    if(commands) {
+        if(!message.content.startsWith(prefix)) return;
+
+        commands.run(bot, message, prefix);
     }
 });
 

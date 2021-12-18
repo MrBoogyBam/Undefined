@@ -4,7 +4,9 @@ const { token, prefix } = require('./config.json');
 const fs = require('fs');
 
 bot.commands = new Collection();
+bot.events = new Collection();
 
+// Command Handler
 fs.readdirSync('./src/commands').forEach(dir => {
     fs.readdir(`./src/commands/${dir}`, (err, files) => {
         if(err) throw err;
@@ -24,6 +26,22 @@ fs.readdirSync('./src/commands').forEach(dir => {
                 return console.log(err);
             }
         });
+    });
+});
+
+// Event Handler
+fs.readdirSync('./src/events/').forEach(file => {
+    let jsFiles = fs.readdirSync('./src/events/').filter(f => f.split(".").pop() == "js");
+    if(jsFiles.length <= 0) return console.log("[EVENT HANDLER]: Can't find any events.");
+
+    jsFiles.forEach(file => {
+        let eventGet = require(`./src/events/${file}`);
+
+        try {
+            bot.events.set(eventGet.name, eventGet);
+        } catch(err) {
+            return console.log(err);
+        }
     });
 });
 

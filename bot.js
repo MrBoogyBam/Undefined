@@ -1,6 +1,7 @@
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, Collection } = require('discord.js');
 const bot = new Client({ intents: [ Intents.FLAGS.GUILDS, "GUILD_MESSAGES", "GUILD_MEMBERS" ] });
 const { token, prefix } = require('./config.json');
+const fs = require('fs');
 
 bot.on('ready', () => {
     console.log(`${bot.user.username} is now online!`);

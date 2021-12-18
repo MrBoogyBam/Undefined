@@ -6,7 +6,7 @@ const fs = require('fs');
 bot.commands = new Collection();
 
 fs.readdirSync('./src/commands').forEach(dir => {
-    fs.readdir(`./commands/${dir}`, (err, files) => {
+    fs.readdir(`./src/commands/${dir}`, (err, files) => {
         if(err) throw err;
 
         let jsFiles = files.filter(f => f.split(".").pop() == "js");
@@ -14,7 +14,7 @@ fs.readdirSync('./src/commands').forEach(dir => {
         if(jsFiles.length <= 0) return console.log("[COMMAND HANDLER]: Can't find any commands.");
 
         jsFiles.forEach(file => {
-            let fileGet = require(`./commands/${dir}/${file}`);
+            let fileGet = require(`./src/commands/${dir}/${file}`);
 
             console.log(`[COMMAND HANDLER]: File ${file} was loaded.`);
 

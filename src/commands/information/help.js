@@ -60,9 +60,9 @@ module.exports.run = async(bot, message, prefix) => {
     } else if(message.content.toLowerCase() == `${prefix}help kick`) {
         let kickEmbed = new MessageEmbed()
             .setTitle(`__${bot.user.username} Kick Command__`)
-            .setDescription(`The bot will kick the first member you mention in your message.`)
+            .setDescription(`The bot will kick the first member you mention in your message. A message will be sent to the person who was kicked.`)
             .setFields(
-                { name: "Usage:", value: `\`${prefix}kick user\`` }
+                { name: "Usage:", value: `\`${prefix}kick User Reason\`` }
             )
             .setColor('#008cf7')
             .setFooter(`${bot.user.username} Bot`, bot.user.displayAvatarURL());

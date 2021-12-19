@@ -23,19 +23,35 @@ module.exports.run = async(bot, message, prefix) => {
         return;
     }
 
-    let kickEmbed = new MessageEmbed()
-        .setTitle(`You have been kicked from ${message.guild.name}`)
-        .setDescription(`You have been kicked from the ${message.guild.name} server by ${message.author.username}.`)
-        .setFields(
-            { name: "Reason:", value: kickReason }
-        )
-        .setColor('#ba200b')
-        .setFooter(`${bot.user.username} Bot`, bot.user.displayAvatarURL())
-        .setTimestamp();
+    if(kickReason == undefined) {
+        let kickEmbed = new MessageEmbed()
+            .setTitle(`You have been kicked from ${message.guild.name}`)
+            .setDescription(`You have been kicked from the ${message.guild.name} server by ${message.author.username}.`)
+            .setFields(
+                { name: "Reason:", value: "N/A" }
+            )
+            .setColor('#ba200b')
+            .setFooter(`${bot.user.username} Bot`, bot.user.displayAvatarURL())
+            .setTimestamp();
 
-    await kickedUser.user.send({ embeds: [kickEmbed] });
+        await kickedUser.user.send({ embeds: [kickEmbed] });
 
-    kickedUser.kick(kickReason);
+        kickedUser.kick();
+    } else {
+        let kickEmbed = new MessageEmbed()
+            .setTitle(`You have been kicked from ${message.guild.name}`)
+            .setDescription(`You have been kicked from the ${message.guild.name} server by ${message.author.username}.`)
+            .setFields(
+                { name: "Reason:", value: kickReason }
+            )
+            .setColor('#ba200b')
+            .setFooter(`${bot.user.username} Bot`, bot.user.displayAvatarURL())
+            .setTimestamp();
+
+        await kickedUser.user.send({ embeds: [kickEmbed] });
+
+        kickedUser.kick(kickReason);
+    }
 
     message.channel.send(`:white_check_mark: ${kickedUser.username} has been kicked.`);
     return;

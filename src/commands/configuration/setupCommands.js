@@ -9,12 +9,11 @@ module.exports.run = async(bot, message, prefix) => {
         }
     
         let channelIdArgs = message.content.split(" ").slice(2).join();
-        let channelId = channelIdArgs.substring(2, channelIdArgs.length - 1);
-        let modlogsChannel = bot.channels.cache.get(channelId);
+        let modlogsChannel = channelIdArgs.substring(2, channelIdArgs.length - 1);
 
         await keyv.set('mod-logs-channel'+message.guild.id, modlogsChannel);
 
-        message.channel.send(`:white_check_mark: Successfully set the moderation logs channel to <#${channelId}>`);
+        message.channel.send(`:white_check_mark: Successfully set the moderation logs channel to <#${modlogsChannel}>`);
         return;
     }
 }

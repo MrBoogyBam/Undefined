@@ -4,3 +4,4 @@ node_modules
 # files
 config.json
 package-lock.json
+database.db

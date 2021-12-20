@@ -2,8 +2,8 @@ const Keyv = require('keyv');
 const keyv = new Keyv("sqlite://database.db");
 
 module.exports.run = async(bot, message, prefix) => {
-    if(message.content.toLowerCase().startsWith(`${prefix}setup modlog`)) {
-        if(message.content.toLowerCase() == `${prefix}setup modlog`) {
+    if(message.content.toLowerCase().startsWith(`${prefix}setup modlogs`)) {
+        if(message.content.toLowerCase() == `${prefix}setup modlogs`) {
             message.channel.send(":x: Not enough arguments.");
             return;
         }

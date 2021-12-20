@@ -9,7 +9,9 @@
   "author": "MrBoogyBam",
   "license": "MIT",
   "dependencies": {
+    "@keyv/sqlite": "^2.0.3",
     "discord.js": "^13.3.1",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "keyv": "^4.0.4"
   }
 }
